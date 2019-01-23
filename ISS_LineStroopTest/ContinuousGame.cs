@@ -216,11 +216,11 @@ namespace ISS_NBackCircle
                     spriteBatch.Draw(_background, rect, Color.LightGray);
                     rect.Y += rect.Height;
 
-                } while (rect.Top < RenderTarget2D.Bounds.Right);
+                } while (rect.Top < RenderTarget2D.Bounds.Bottom);
 
                 rect.X += rect.Width;
 
-            } while (rect.Left < RenderTarget2D.Bounds.Bottom);
+            } while (rect.Left < RenderTarget2D.Bounds.Right);
 
             spriteBatch.Draw(_circleTexture, _circlePosition, Color.Gray);
             spriteBatch.Draw(_playerTexture, _playerPosition, Color.White);

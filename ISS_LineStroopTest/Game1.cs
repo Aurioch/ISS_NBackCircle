@@ -361,11 +361,11 @@ namespace ISS_NBackCircle
                     spriteBatch.Draw(_backgroundContinuous, rect, Color.LightGray);
                     rect.Y += rect.Height;
 
-                } while (rect.Top < _continuousSize.Right);
+                } while (rect.Top < _continuousSize.Bottom);
 
                 rect.X += rect.Width;
 
-            } while (rect.Left < _continuousSize.Bottom);
+            } while (rect.Left < _continuousSize.Right);
         }
 
         void DrawDiscreteBackground()
