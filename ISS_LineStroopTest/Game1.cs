@@ -80,7 +80,7 @@ namespace ISS_NBackCircle
                 _screens.Add(new ContinuousGame(this, _config.ContinuousConfig, _config.GameDuration));
 
             if (_config.RunGames == RunGames.Discrete || _config.RunGames == RunGames.Both)
-                _screens.Add(new DiscreteGame(this, _config.DiscreteConfig, _config.GameDuration));
+                _screens.Add(new DiscreteGame(this, _config.DiscreteConfig, _config, _config.GameDuration));
 
             foreach (var screen in _screens)
                 screen.Initialize();
@@ -215,7 +215,7 @@ namespace ISS_NBackCircle
                     if (screen.Enabled)
                         screen.Update(gameTime);
 
-                if (_gameElapsed > _config.GameDuration + 0.01d)
+                if (_gameElapsed > _config.GameDuration + 0.1d)
                 {
                     _isGameActive = false;
                 }

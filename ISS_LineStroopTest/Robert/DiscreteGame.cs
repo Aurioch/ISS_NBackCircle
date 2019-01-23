@@ -43,8 +43,9 @@ namespace ISS_NBackCircle
         bool _isRight;
         int? _seed;
         Texture2D _background;
+        bool isOutput = false;
 
-        public DiscreteGame(Game game, DiscreteConfig config, double duration) : base(game)
+        public DiscreteGame(Game game, DiscreteConfig config, Config cfg, double duration) : base(game)
         {
             N = config.N;
             wordDuration = config.wordDuration;
@@ -55,6 +56,15 @@ namespace ISS_NBackCircle
 
             _isRight = config.IsRight;
             _seed = config.Seed;
+
+            if (cfg.RunGames == RunGames.Discrete)
+            {
+                random = new Random(1);
+            }
+            else
+            {
+                random = new Random(2);
+            }
         }
 
         public override void Initialize()
@@ -84,11 +94,6 @@ namespace ISS_NBackCircle
                     }
                 }
             }
-
-            if (_seed.HasValue)
-                random = new Random(_seed.Value);
-            else
-                random = new Random();
 
             numOfWords = words.Count;
             wordIndex = random.Next(numOfWords);
@@ -231,6 +236,22 @@ namespace ISS_NBackCircle
                 string missedAnswersString = "Missed answers: " + missedCorrectAnswers.ToString();
                 wordPosition = calculateWordPosition(width, height, missedAnswersString);
                 spriteBatch.DrawString(fontNormal, missedAnswersString, new Vector2(wordPosition.X, 300), Color.Orange);
+
+                if (!isOutput)
+                {
+                    isOutput = true;
+
+                    // Output score
+                    string path = @".\Discrete-results.txt";
+                    using (StreamWriter sw = File.AppendText(path))
+                    {
+                        sw.WriteLine("#####################");
+                        sw.WriteLine("Score: " + score);
+                        sw.WriteLine("Correct answers: " + correctAnswers);
+                        sw.WriteLine("Wrong answers: " + wrongAnswers);
+                        sw.WriteLine("Missed correct answers: " + missedCorrectAnswers);
+                    }
+                }
             }
 
             spriteBatch.End();

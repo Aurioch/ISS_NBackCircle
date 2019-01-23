@@ -32,7 +32,7 @@
     {
         public int? Seed { get; set; } = null;
         public int N { get; set; } = 2;
-        public int wordDuration { get; set; } = 4;
+        public int wordDuration { get; set; } = 5;
         public float answerDuration { get; set; } = 0.75f;
         public float animationDuration { get; set; } = 0.75f;
         public Difficulty difficulty { get; set; } = Difficulty.Easy;
