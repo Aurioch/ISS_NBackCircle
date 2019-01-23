@@ -1,0 +1,7 @@
+﻿<XnaContent>
+  <Asset Type="MyLevel">
+    <LevelName>explosion</LevelName>
+    <MaxEnemies>50</MaxEnemies>
+    <TimeLimit>300</TimeLimit>
+  </Asset>
+</XnaContent>
