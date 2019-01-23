@@ -47,6 +47,8 @@ namespace ISS_NBackCircle
         double _wander;
         SpriteFont _font;
 
+        bool _isRight;
+
         Vector2 DesignResolution = new Vector2(800, 480);
         const int CircleRadius = 32;
         const int PlayerSize = 16;
@@ -61,6 +63,7 @@ namespace ISS_NBackCircle
 
             _duration = duration;
             _elapsed = 0d;
+            _isRight = config.IsRight;
         }
 
         public override void Initialize()
@@ -222,9 +225,11 @@ namespace ISS_NBackCircle
             spriteBatch.Draw(_circleTexture, _circlePosition, Color.Gray);
             spriteBatch.Draw(_playerTexture, _playerPosition, Color.White);
 
+            var text = "";
+
             if (_elapsed >= _duration)
             {
-                var text = "Left circle: " + _timesOutside.ToString() + " times";
+                text = "Left circle: " + _timesOutside.ToString() + " times";
                 var position = new Vector2(RenderTarget2D.Width / 2, RenderTarget2D.Height / 8);
                 spriteBatch.DrawString(_font, text, position - _font.MeasureString(text) / 2, Color.LightBlue);
 
@@ -235,6 +240,11 @@ namespace ISS_NBackCircle
                 text = "Max delta: " + _maxDelta.ToString();
                 position.Y += _font.MeasureString(text).Y + 5;
                 spriteBatch.DrawString(_font, text, position - _font.MeasureString(text) / 2, Color.LightBlue);
+            }
+            else
+            {
+                text = "Delta: " + Math.Round(Vector2.Distance(_circlePosition.Center.ToVector2(), _playerPosition.Center.ToVector2()), 0);
+                spriteBatch.DrawString(_font, text, _isRight ? new Vector2(RenderTarget2D.Width - 10 - _font.MeasureString(text).X / 2, 10) : new Vector2(10, 10), Color.LightBlue, 0f, Vector2.Zero, 0.5f, SpriteEffects.None, 1f);
             }
 
             spriteBatch.End();

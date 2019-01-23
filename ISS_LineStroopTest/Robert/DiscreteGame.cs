@@ -40,7 +40,7 @@ namespace ISS_NBackCircle
         private double gameDuration;
         private Difficulty difficulty;
 
-        bool _nRight;
+        bool _isRight;
         int? _seed;
         Texture2D _background;
 
@@ -53,7 +53,7 @@ namespace ISS_NBackCircle
             gameDuration = duration;
             difficulty = config.difficulty;
 
-            _nRight = config.WriteNRight;
+            _isRight = config.IsRight;
             _seed = config.Seed;
         }
 
@@ -211,7 +211,7 @@ namespace ISS_NBackCircle
                     new Vector2(rightMargin, defaultMargin), Color.GreenYellow
                 );
                 //spriteBatch.DrawString(fontNormal, "Time: " + (int)gameDuration +" s", new Vector2(defaultMargin, 3 * defaultMargin + 10), timerColor);
-                spriteBatch.DrawString(fontNormal, "N = " + N, new Vector2(_nRight ? rightMargin + 55 : defaultMargin, defaultMargin + (_nRight ? fontNormal.MeasureString("N = ").Y + 10 : 0)), Color.GreenYellow);
+                spriteBatch.DrawString(fontNormal, "N = " + N, new Vector2(_isRight ? rightMargin + 55 : defaultMargin, defaultMargin + (_isRight ? fontNormal.MeasureString("N = ").Y + 10 : 0)), Color.GreenYellow);
                 wordPosition = calculateWordPosition(width, height, null);
                 spriteBatch.DrawString(fontBig, words[wordIndex], wordPosition, answerColor * alpha);
             } else

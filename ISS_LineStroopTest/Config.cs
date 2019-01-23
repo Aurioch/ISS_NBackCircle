@@ -23,6 +23,9 @@
         public float PlayerRelativeSpeed { get; set; } = 1.5f;
         public double CircleMinimumMovementTime { get; set; } = 0.5d;
         public double CircleMaximumMovementTime { get; set; } = 1.5d;
+
+        [System.Xml.Serialization.XmlIgnore]
+        public bool IsRight { get; set; } = false;
     }
 
     public class DiscreteConfig
@@ -35,7 +38,7 @@
         public Difficulty difficulty { get; set; } = Difficulty.Easy;
 
         [System.Xml.Serialization.XmlIgnore]
-        public bool WriteNRight { get; set; } = false;
+        public bool IsRight { get; set; } = false;
     }
 
     public enum RunGames

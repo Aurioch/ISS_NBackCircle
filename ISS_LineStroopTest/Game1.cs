@@ -67,7 +67,12 @@ namespace ISS_NBackCircle
 
             //Inicijaliziraj scene
             if (_config.RunGames == RunGames.Both)
-                _config.DiscreteConfig.WriteNRight = true;
+            {
+                if (_config.LeftSideGame == RunGames.Continuous)
+                    _config.DiscreteConfig.IsRight = true;
+                else
+                    _config.ContinuousConfig.IsRight = true;
+            }
 
             _screens = new List<GameScreen>();
 
