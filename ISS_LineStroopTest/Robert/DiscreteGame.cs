@@ -145,9 +145,9 @@ namespace ISS_NBackCircle
 
                 lastNWords.Add(words[wordIndex]);
 
-                // get a new word, there is 25% chance to intentionally generate correct answer
+                // get a new word, there is 30% chance to intentionally generate correct answer
                 var rand = random.NextDouble();
-                if (rand >= 0.75)
+                if (rand >= 0.7)
                 {
                     Debug.WriteLine("tu sam");
                     wordIndex = words.IndexOf(lastNWords.Peek());
